@@ -9,7 +9,7 @@
     <name>SampleApp</name>
 
     <properties>
-        <version.wildfly>26.1.0.Beta1</version.wildfly>
+        <version.wildfly>8.0.0.Beta-redhat-20220408</version.wildfly>
         <version.wildfly.plugin>3.0.0.Final</version.wildfly.plugin>
     </properties>
     <build>
@@ -23,7 +23,7 @@
                     <record-provisioning-state>true</record-provisioning-state>
                     <feature-packs>
                         <feature-pack>
-                            <location>wildfly@maven(org.jboss.universe:community-universe)#${version.wildfly}</location>
+                            <location>org.jboss.eap:wildfly-ee-galleon-pack:${version.wildfly}</location>
                         </feature-pack>
                     </feature-packs>
                     <layers>
