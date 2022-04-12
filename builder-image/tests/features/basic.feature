@@ -1,6 +1,4 @@
-@wildfly/wildfly-s2i-jdk11
-@wildfly/wildfly-s2i-jdk17
-Feature: Wildfly basic tests
+Feature: EAP basic tests
 
   Scenario: Check that the legacy default config provisioned using galleon plugin works fine
    Given s2i build http://github.com/jfdenise/eap-s2i from test/test-app-default-config with env and True using main

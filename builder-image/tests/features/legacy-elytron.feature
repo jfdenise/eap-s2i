@@ -1,12 +1,10 @@
-@wildfly/wildfly-s2i-jdk17
-@wildfly/wildfly-s2i-jdk11
 Feature: Some elytron testing
 
 Scenario: Build elytron app
     Given s2i build https://github.com/wildfly/wildfly-s2i from test/test-app-web-security with env and true using legacy-s2i-images
        | variable                   | value       |
        | GALLEON_PROVISION_LAYERS | datasources-web-server |
-       | GALLEON_PROVISION_FEATURE_PACKS | org.wildfly:wildfly-galleon-pack:26.1.0.Beta1, org.wildfly.cloud:wildfly-cloud-galleon-pack:1.0.0.Beta4 |
+       | GALLEON_PROVISION_FEATURE_PACKS | org.jboss.eap:wildfly-ee-galleon-pack:8.0.0.Beta-redhat-20220408,org.jboss.eap.cloud:eap-cloud-galleon-pack:1.0.0.Final-SNAPSHOT |
      Then container log should contain WFLYSRV0025
 
  Scenario: check Elytron configuration with elytron core realms security domain fail
