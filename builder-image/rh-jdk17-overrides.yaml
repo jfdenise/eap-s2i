@@ -1,0 +1,31 @@
+schema_version: 1
+
+name: &imgName "jboss-eap-8-tech-preview/eap-8-openjdk17-openshift-rhel8"
+labels:
+    - name: "com.redhat.component"
+      value: "jboss-eap8-openjdk17-builder-openshift-rhel8-container"
+    - name: name
+      value: *imgName
+modules:
+      install:
+          - name: jboss.container.openjdk.jdk
+            version: "17"
+          - name: jboss.container.java.singleton-jdk
+
+packages:
+ content_sets_file: content_sets_rhel8.yml
+
+osbs:
+  configuration:
+    container:
+      platforms:
+        only:
+          - x86_64
+          - s390x
+          - ppc64le
+      compose:
+        pulp_repos: true
+        signing_intent: release
+  repository:
+    name: containers/jboss-eap8-openjdk17-builder
+    branch: jb-eap8-rhel-8
