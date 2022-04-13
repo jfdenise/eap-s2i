@@ -29,7 +29,7 @@
         </dependency>
     </dependencies>
 
-    <profiles>
+        <profiles>
         <profile>
             <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
             <!-- Use this profile for any OpenShift specific customization your app will need. -->
@@ -37,49 +37,17 @@
             <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
             <id>openshift</id>
             <build>
-                <finalName>SampleApp</finalName>
+                <finalName>DemoApp</finalName>
                 <plugins>
                     <plugin>
                         <groupId>org.apache.maven.plugins</groupId>
                         <artifactId>maven-war-plugin</artifactId>
                         <version>${version.maven.war.plugin}</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.wildfly.plugins</groupId>
-                        <artifactId>wildfly-maven-plugin</artifactId>
-                        <version>${version.wildfly.plugin}</version>
                         <configuration>
-                            <feature-packs>
-                                <feature-pack>
-                                    <location>org.wildfly:wildfly-galleon-pack:${version.wildfly}</location>
-                                </feature-pack>
-                                <feature-pack>
-                                    <location>org.wildfly.cloud:wildfly-cloud-galleon-pack:${version.wildfly.cloud.galleon.pack}</location>
-                                </feature-pack>
-                                <feature-pack>
-                                    <location>org.wildfly:wildfly-datasources-galleon-pack:${version.wildfly.datasources.galleon.pack}</location>
-                                </feature-pack>
-                            </feature-packs>
-                            <layers>
-                                <layer>cloud-server</layer>
-                                <layer>postgresql-datasource</layer>
-                                <layer>mysql-datasource</layer>
-                            </layers>
-                            <extra-server-content-dirs>
-                                <extra-content>extra-content</extra-content>
-                            </extra-server-content-dirs>
-                            <galleon-options>
-                                <jboss-fork-embedded>${plugin.fork.embedded}</jboss-fork-embedded>
-                            </galleon-options>
-                            <runtime-name>ROOT.war</runtime-name>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                            <outputDirectory>target</outputDirectory>
+                            <warName>ROOT</warName>
                         </configuration>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>package</goal>
-                                </goals>
-                            </execution>
-                        </executions>
                     </plugin>
                 </plugins>
             </build>
