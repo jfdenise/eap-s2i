@@ -1,4 +1,3 @@
-@wip
 Feature: Vanilla EAP basic tests
 
  Scenario: Check if image version and release is printed on boot

@@ -1,4 +1,4 @@
-Feature: Wildfly extensions tests
+Feature: EAP extensions tests
 
   Scenario: Build server image
     Given s2i build https://github.com/jfdenise/eap-s2i from test/test-app-advanced-extensions with env and True using main

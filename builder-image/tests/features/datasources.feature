@@ -1,10 +1,19 @@
-@wildfly/wildfly-s2i-jdk17
-@wildfly/wildfly-s2i-jdk11
-Feature: Wildfly configured for datasources
+Feature: EAP configured for datasources
 
-  Scenario: Build image with server
-    Given s2i build http://github.com/wildfly/wildfly-s2i from test/test-app-postgresql-mysql with env and true using main
+Scenario: Build image with server and datasource
+    Given s2i build http://github.com/jfdenise/eap-s2i from test/test-app-postgres with env and true using main
     | variable                 | value           |
+    | GALLEON_USE_LOCAL_FILE | true |
+    | POSTGRESQL_DRIVER_VERSION | 42.2.19 |
+    ### PLACEHOLDER FOR CLOUD CUSTOM TESTING ###
+    Then container log should contain WFLYSRV0025
+
+  Scenario: Build image with server  and datasources
+    Given s2i build http://github.com/jfdenise/eap-s2i from test/test-app-postgresql-oracle with env and true using main
+    | variable                 | value           |
+    | GALLEON_USE_LOCAL_FILE | true |
+    | POSTGRESQL_DRIVER_VERSION | 42.2.19 |
+    | ORACLE_DRIVER_VERSION | 19.3.0.0|
     ### PLACEHOLDER FOR CLOUD CUSTOM TESTING ###
     Then container log should contain WFLYSRV0025
 
@@ -23,7 +32,7 @@ Feature: Wildfly configured for datasources
       | test_USERNAME                | demo                                          |
     Then container log should contain WFLYSRV0025
     Then XML file /opt/server/standalone/configuration/standalone.xml should contain value test_postgresql-test on XPath //*[local-name()='datasource']/@pool-name
-    Then XML file /opt/server/standalone/configuration/standalone.xml should contain value MySQLDS on XPath //*[local-name()='datasource']/@pool-name
+    Then XML file /opt/server/standalone/configuration/standalone.xml should contain value OracleDS on XPath //*[local-name()='datasource']/@pool-name
     Then XML file /opt/server/standalone/configuration/standalone.xml should contain value PostgreSQLDS on XPath //*[local-name()='datasource']/@pool-name
     And check that page is served
       | property | value |
@@ -35,14 +44,12 @@ Feature: Wildfly configured for datasources
       | variable                     | value                                                       |
       | ENV_FILES                    | /opt/server/standalone/configuration/datasources.env |
       | POSTGRESQL_ENABLED | false |
-      | MYSQL_ENABLED            | false |
+      | ORACLE_ENABLED            | false |
     Then container log should contain WFLYSRV0025
     And check that page is served
       | property | value |
       | path     | /     |
       | port     | 8080  |
-    Then XML file /opt/server/standalone/configuration/standalone.xml should have 1 elements on XPath  //*[local-name()='extension'][@module="org.wildfly.extension.microprofile.opentracing-smallrye"]
-    Then XML file /opt/server/standalone/configuration/standalone.xml should have 1 elements on XPath  //*[local-name()='subsystem' and starts-with(namespace-uri(), 'urn:wildfly:microprofile-opentracing-smallrye:')]
     Then XML file /opt/server/standalone/configuration/standalone.xml should contain value test-TEST on XPath //*[local-name()='datasource']/@pool-name
     Then XML file /opt/server/standalone/configuration/standalone.xml should contain value postgresql on XPath //*[local-name()='driver']/@name
 
@@ -51,7 +58,7 @@ Feature: Wildfly configured for datasources
       | variable                     | value                                                       |
       | ENV_FILES                    | /opt/server/standalone/configuration/datasources.env |
       | POSTGRESQL_ENABLED | false |
-      | MYSQL_ENABLED            | false |
+      | ORACLE_ENABLED            | false |
       | DISABLE_BOOT_SCRIPT_INVOKER  | true |
     Then container log should contain Configuring the server using embedded server
     Then container log should contain WFLYSRV0025
@@ -59,7 +66,5 @@ Feature: Wildfly configured for datasources
       | property | value |
       | path     | /     |
       | port     | 8080  |
-    Then XML file /opt/server/standalone/configuration/standalone.xml should have 1 elements on XPath  //*[local-name()='extension'][@module="org.wildfly.extension.microprofile.opentracing-smallrye"]
-    Then XML file /opt/server/standalone/configuration/standalone.xml should have 1 elements on XPath  //*[local-name()='subsystem' and starts-with(namespace-uri(), 'urn:wildfly:microprofile-opentracing-smallrye:')]
     Then XML file /opt/server/standalone/configuration/standalone.xml should contain value test-TEST on XPath //*[local-name()='datasource']/@pool-name
     Then XML file /opt/server/standalone/configuration/standalone.xml should contain value postgresql on XPath //*[local-name()='driver']/@name
