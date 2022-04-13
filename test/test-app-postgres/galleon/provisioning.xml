@@ -9,7 +9,7 @@
         <default-configs inherit="false"/>
         <packages inherit="false"/>
     </feature-pack>
-    <feature-pack location="org.jboss.eap:eap-datasources-galleon-pack:8.0.0.Beta-SNAPSHOT">
+    <feature-pack location="org.jboss.eap:eap-datasources-galleon-pack:8.0.0.Beta-redhat-SNAPSHOT">
         <default-configs inherit="false"/>
         <packages inherit="false"/>
     </feature-pack>
