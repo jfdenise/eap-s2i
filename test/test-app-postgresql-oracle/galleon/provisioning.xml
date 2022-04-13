@@ -17,7 +17,7 @@
         <layers>
             <include name="cloud-server"/>
             <include name="postgresql-datasource"/>
-            <include name="mysql-datasource"/>
+            <include name="oracle-datasource"/>
         </layers>
     </config>
     <options>
