@@ -9,9 +9,17 @@ Scenario: Build image with server and datasource
     Then container log should contain WFLYSRV0025
 
   Scenario: Build image with server  and datasources
-    Given s2i build http://github.com/jfdenise/eap-s2i from test/test-app-postgresql-oracle with env and true using main
+    Given s2i build http://github.com/jfdenise/eap-s2i from test/test-app-postgresql-oracle-legacy with env and true using main
     | variable                 | value           |
     | GALLEON_USE_LOCAL_FILE | true |
+    | POSTGRESQL_DRIVER_VERSION | 42.2.19 |
+    | ORACLE_DRIVER_VERSION | 19.3.0.0|
+    ### PLACEHOLDER FOR CLOUD CUSTOM TESTING ###
+    Then container log should contain WFLYSRV0025
+
+ Scenario: Build image with server  and datasources
+    Given s2i build http://github.com/jfdenise/eap-s2i from test/test-app-postgresql-oracle with env and true using main
+    | variable                 | value           |
     | POSTGRESQL_DRIVER_VERSION | 42.2.19 |
     | ORACLE_DRIVER_VERSION | 19.3.0.0|
     ### PLACEHOLDER FOR CLOUD CUSTOM TESTING ###
