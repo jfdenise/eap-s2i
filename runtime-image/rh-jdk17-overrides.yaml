@@ -4,18 +4,10 @@ name: &imgName "jboss-eap-8-tech-preview/eap8-openjdk17-runtime-openshift-rhel8"
 description: "The JBoss EAP 8 OpenJDK 17 runtime image"
 
 labels:
+    - name: "org.jboss.product"
+      value: "eap8-openjdk17-runtime"
     - name: "com.redhat.component"
       value: "jboss-eap8-beta-openjdk17-runtime-openshift-container"
-    - name: "io.k8s.description"
-      value: "Base image to run an EAP server and application"
-    - name: "io.k8s.display-name"
-      value: "JBoss EAP runtime image"
-    - name: "io.openshift.expose-services"
-      value: "8080:http"
-    - name: "io.openshift.tags"
-      value: "javaee,eap,eap8"
-    - name: "maintainer"
-      value: "Red Hat"
 
 envs:
     - name: IMAGE_NAME

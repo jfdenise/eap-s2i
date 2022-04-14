@@ -5,10 +5,14 @@ description: "The JBoss EAP 8 OpenJDK 11 runtime image"
 version: &imgVersion "8.0.0.Beta"
 from: "registry.access.redhat.com/ubi8/ubi-minimal"
 labels:
+    - name: "org.jboss.product"
+      value: "eap8-openjdk11-runtime"
+    - name: "org.jboss.product.version"
+      value: *imgVersion
     - name: "com.redhat.component"
       value: "jboss-eap8-beta-openjdk11-runtime-openshift-container"
     - name: "io.k8s.description"
-      value: "Base image to run an EAP server and application"
+      value: "Base image to run an EAP 8 server and application"
     - name: "io.k8s.display-name"
       value: "JBoss EAP 8 runtime image"
     - name: name
