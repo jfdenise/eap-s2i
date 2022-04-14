@@ -1,14 +1,14 @@
 schema_version: 1
 
-name: &imgName "jboss-eap-8-tech-preview/eap-8-openjdk11-openshift-rhel8"
+name: &imgName "jboss-eap-8-tech-preview/eap8-openjdk11-builder-openshift"
 description: "Red Hat JBoss Enterprise Application Platform 8.0 OpenShift container image."
-version: &imgVersion "8.0.0"
+version: &imgVersion "8.0.0-beta"
 from: "registry.access.redhat.com/ubi8/ubi-minimal"
 labels:
     - name: name
       value: *imgName
     - name: "com.redhat.component"
-      value: "jboss-eap8-openjdk11-builder-openshift-rhel8-container"
+      value: "jboss-eap8-beta-openjdk11-builder-openshift-container"
     - name: io.k8s.description
       value: "Platform for building and running JavaEE applications on JBoss EAP 8.0"
     - name: io.k8s.display-name

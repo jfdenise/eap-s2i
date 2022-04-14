@@ -1,12 +1,12 @@
 schema_version: 1
 
-name: &imgName "jboss-eap-8-tech-preview/eap-8-openjdk11-runtime-openshift-rhel8"
+name: &imgName "jboss-eap-8-tech-preview/eap8-openjdk11-runtime-openshift"
 description: "The JBoss EAP 8 OpenJDK 11 runtime image"
-version: &imgVersion "8.0.0"
+version: &imgVersion "8.0.0-beta"
 from: "registry.access.redhat.com/ubi8/ubi-minimal"
 labels:
     - name: "com.redhat.component"
-      value: "jboss-eap8-openjdk11-runtime-openshift-rhel8-container"
+      value: "jboss-eap8-beta-openjdk11-runtime-openshift-container"
     - name: "io.k8s.description"
       value: "Base image to run an EAP server and application"
     - name: "io.k8s.display-name"

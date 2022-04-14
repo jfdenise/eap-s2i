@@ -1,9 +1,9 @@
 schema_version: 1
 
-name: &imgName "jboss-eap-8-tech-preview/eap-8-openjdk17-openshift-rhel8"
+name: &imgName "jboss-eap-8-tech-preview/eap8-openjdk17-builder-openshift"
 labels:
     - name: "com.redhat.component"
-      value: "jboss-eap8-openjdk17-builder-openshift-rhel8-container"
+      value: "jboss-eap8-beta-openjdk17-builder-openshift-container"
     - name: name
       value: *imgName
 modules:
@@ -27,5 +27,5 @@ osbs:
         pulp_repos: true
         signing_intent: release
   repository:
-    name: containers/jboss-eap8-openjdk17-builder
-    branch: jb-eap8-rhel-8
+    name: containers/jboss-eap8-beta-openjdk17-builder-openshift
+    branch: jb-eap-8.0-rhel-8
