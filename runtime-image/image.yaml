@@ -49,8 +49,6 @@ modules:
             git:
               url: https://github.com/jfdenise/wildfly-cekit-modules
               ref: increase-sharing
-          - name: eap-modules
-            path: ../modules
       install:
           - name: jboss.container.util.pkg-update
           - name: jboss.container.openjdk.jdk
