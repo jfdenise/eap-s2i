@@ -51,8 +51,8 @@ modules:
               ref: develop
           - name: wildfly-cekit-modules
             git:
-              url: https://github.com/jfdenise/wildfly-cekit-modules
-              ref: increase-sharing
+              url: https://github.com/wildfly/wildfly-cekit-modules
+              ref: main
           - name: eap-modules
             path: ../modules
       install:
